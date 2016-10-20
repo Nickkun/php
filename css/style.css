@@ -1,0 +1,41 @@
+body {
+  padding-top: 70px;
+}
+
+img {
+  width: 100%;
+}
+
+.no_first {
+  margin-top: 40px;
+}
+#carousel, #carousel .item {
+  height: 360px;
+}
+
+.section_bg {
+  position: relative;
+}
+
+
+.section_bg .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.section_bg .overlay article {
+  padding-top: 200px;
+  text-align: center;
+  color: #FFF;
+  text-shadow: 2px 2px #444;
+  opacity: 1;
+}
+
+tfoot tr td {
+  vertical-align: middle !important;
+}
