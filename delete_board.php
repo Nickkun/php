@@ -1,3 +1,19 @@
+<?php
+  $id = $_GET['id'];
+
+  /* Database 연결 */
+  $host = 'mysql:host=localhost;dbname=test';
+  $user = 'test';
+  $password = '1234';
+  $conn = new PDO($host, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+  /* Data 삭제를 위한 Query 작성 */
+  $stmt = $conn->prepare('DELETE FROM board WHERE id='.$id);
+  /* Query 실행 */
+  $stmt->execute();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -36,42 +52,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
+            <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
             <li><a href="./introduce.php"><i class="fa fa-user-secret" aria-hidden="true"></i> Introduce</a></li>
-            <li class="active"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Board  <span class="sr-only">(current)</span></a></li>
+            <li><a href="./board.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Board</a></li>
             <li><a href="./faq.php"><i class="fa fa-comments" aria-hidden="true"></i> FAQ</a></li>
-          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <section class="container">
-      <form class="form-horizontal" action="./insert_board.php" method="get">
-        <div class="form-group">
-          <label for="title" class="col-sm-2 control-label">제목</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="content" class="col-sm-2 control-label">내용</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="author" class="col-sm-2 control-label">작성자</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="author" name="author" placeholder="작성자를 입력하세요">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">등록</button>
-          </div>
-        </div>
-      </form>
+      <h3>성공적으로 삭제되었습니다</h3>
+      <a href="./board.php" class="btn btn-primary"><i class="fa fa-list" aria-hidden="true"></i> 목록</a>
     </section>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
