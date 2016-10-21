@@ -1,25 +1,3 @@
-<?php
-/* Database 연결 */
-  $host = 'mysql:host=localhost;dbname=test';
-  $user = 'test';
-  $password = '1234';
-  $conn = new PDO($host, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-
-  /* Data 조회를 위한 Query 작성 */
-  $stmt = $conn->prepare('SELECT * FROM board');
-  /* Query 실행 */
-  $stmt->execute();
-  /* 조회한 Data를 배열(Array) 형태로 모두 저장 */
-  $list = $stmt->fetchAll();
-
-  /* Foreach 반복문을 이용해 가져온 모든 데이터를 출력한다 */
-  // foreach($list as $item) {
-  //   print_r($item);
-  //   echo '<br>';
-  // }
-
-?>
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -68,56 +46,8 @@
     </nav>
 
     <section class="container">
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th width="10%">No.</th>
-            <th width="50%">제목</th>
-            <th width="20%">작성자</th>
-            <th width="20%">작성일</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($list as $item) { ?>
-          <tr>
-            <td><?php echo $item['id'] ?></td>
-            <td><a href="./board_detail.php?id=<?php echo $item['id'] ?>"><?php echo $item['title'] ?></a></td>
-            <td><?php echo $item['author'] ?></td>
-            <td><?php echo $item['timestamp'] ?></td>
-          </tr>
-          <?php } ?>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" class="text-center">
-              <nav aria-label="Page navigation">
-                <ul class="pagination">
-                  <li>
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li>
-                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </td>
-            <td class="text-right">
-              <a href="./board_write.php" class="btn btn-primary"><i class="fa fa-pencil"></i> 글쓰기</a>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+      <h1>게시판 글쓰기</h1>
     </section>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
