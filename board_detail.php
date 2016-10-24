@@ -16,13 +16,14 @@
 
 
   /* Data 조회를 위한 Query 작성 */
-  $stmt_reply = $conn->prepare('SELECT * FROM reply WHERE board_id='.$board_id.' ORDER BY id DESC');
+  $stmt_reply = $conn->prepare('SELECT * FROM reply WHERE board_id='.$board_id.' ORDER BY id ASC');
   /* Query 실행 */
   $stmt_reply->execute();
   /* 조회한 Data를 배열(Array) 형태로 모두 저장 */
   $reply_list = $stmt_reply->fetchAll();
 
-
+  // 현재시간
+  $now = date('Y-m-d H:i:s', time() + 32400);
 
 ?>
 
@@ -159,7 +160,12 @@
             <tr>
               <td><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></td>
               <td><?php echo $reply_item['author']?></td>
-              <td><?php echo $reply_item['content']?></td>
+              <td>
+                <?php echo $reply_item['content']?>
+                <?php if ((strtotime($now) - strtotime($reply_item['timestamp'])) < 86400) : ?>
+                  <span class="label label-success">NEW</span>
+                <?php endif; ?>
+              </td>
               <td class="text-right"><?php echo $reply_item['timestamp']?></td>
             </tr>
             <?php } ?>

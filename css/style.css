@@ -45,3 +45,12 @@ tfoot tr td {
   border: 3px solid #ddd;
   margin-top: 30px;
 }
+
+.notice_bg {
+  background-color: #959595 !important;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.notice_bg a {
+  color: #FFFFFF;
+}

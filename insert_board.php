@@ -2,6 +2,14 @@
   $title = $_GET['title'];
   $content = $_GET['content'];
   $author = $_GET['author'];
+  $notice = (isset($_GET['notice'])) ? $_GET['notice'] : '' ;
+  // (조건식) ? TRUE : FALSE;
+  //
+  if ($notice == 'on') {
+    $notice = 1;
+  } else {
+    $notice = 0;
+  }
 
   //echo $title.'<br>'.$content.'<br>'.$author;
 
@@ -13,8 +21,8 @@
 
   /* Data 삽입을 위한 Query 작성 */
   $stmt = $conn->prepare(
-  'INSERT INTO board (title, content, author)
-              VALUES ("'.$title.'", "'.$content.'", "'.$author.'")');
+  'INSERT INTO board (title, content, author, notice)
+   VALUES ("'.$title.'", "'.$content.'", "'.$author.'", "'.$notice.'")');
         //        ("123", "3213", "123")
   /* Query 실행 */
   $stmt->execute();

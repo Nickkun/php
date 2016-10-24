@@ -5,20 +5,19 @@
   $password = '1234';
   $conn = new PDO($host, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
-  /* Data 조회를 위한 Query 작성 */
-  $stmt = $conn->prepare('SELECT * FROM board ORDER BY id DESC LIMIT 0,5');
-
-  /* Query 실행 */
+  // 공지사항 게시물 리스트
+  $stmt = $conn->prepare('SELECT * FROM board WHERE notice=1 ORDER BY id DESC');
   $stmt->execute();
+  $notice_list = $stmt->fetchAll();
 
-  /* 조회한 Data를 배열(Array) 형태로 모두 저장 */
+  // 일반 게시물 리스트
+  $stmt = $conn->prepare('SELECT * FROM board WHERE notice=0 ORDER BY id DESC');
+  $stmt->execute();
   $list = $stmt->fetchAll();
 
-  /* Foreach 반복문을 이용해 가져온 모든 데이터를 출력한다 */
-  // foreach($list as $item) {
-  //   print_r($item);
-  //   echo '<br>';
-  // }
+  // 현재시간
+  $now = date('Y-m-d H:i:s', time() + 32400);
+  // echo time();
 
 ?>
 
@@ -80,10 +79,44 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach($notice_list as $item) { ?>
+          <tr class="notice_bg">
+            <td><span class="label label-danger label-lg">공지</span></td>
+            <td>
+              <a href="./board_detail.php?id=<?php echo $item['id'] ?>"><?php echo $item['title'] ?></a>
+              <?php
+                $stmt = $conn->prepare('SELECT * FROM reply WHERE board_id='.$item['id']);
+                $stmt->execute();
+                $reply_count = $stmt->fetchAll();
+              ?>
+              <?php if (count($reply_count) > 0) : ?>
+                <span class="badge"><?php echo count($reply_count)?></span>
+              <?php endif; ?>
+              <?php if ((strtotime($now)-strtotime($item['timestamp'])) < 86400) { ?>
+                <span class="label label-danger">HOT</span>
+              <?php } ?>
+            </td>
+            <td><?php echo $item['author'] ?></td>
+            <td><?php echo $item['timestamp'] ?></td>
+          </tr>
+          <?php } ?>
           <?php foreach($list as $item) { ?>
           <tr>
             <td><?php echo $item['id'] ?></td>
-            <td><a href="./board_detail.php?id=<?php echo $item['id'] ?>"><?php echo $item['title'] ?></a></td>
+            <td>
+              <a href="./board_detail.php?id=<?php echo $item['id'] ?>"><?php echo $item['title'] ?></a>
+              <?php
+                $stmt = $conn->prepare('SELECT * FROM reply WHERE board_id='.$item['id']);
+                $stmt->execute();
+                $reply_count = $stmt->fetchAll();
+              ?>
+              <?php if (count($reply_count) > 0) : ?>
+                <span class="badge"><?php echo count($reply_count)?></span>
+              <?php endif; ?>
+              <?php if ((strtotime($now)-strtotime($item['timestamp'])) < 86400) { ?>
+                <span class="label label-success">New</span>
+              <?php } ?>
+            </td>
             <td><?php echo $item['author'] ?></td>
             <td><?php echo $item['timestamp'] ?></td>
           </tr>

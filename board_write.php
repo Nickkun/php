@@ -67,6 +67,15 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="notice" name="notice"> 공지사항
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">등록</button>
           </div>
         </div>
