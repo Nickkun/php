@@ -1,14 +1,10 @@
 <?php
+  include './database.php';
+
   $id = $_GET['id'];
   $title = $_GET['title'];
   $content = $_GET['content'];
   $author = $_GET['author'];
-
-  /* Database 연결 */
-  $host = 'mysql:host=localhost;dbname=test';
-  $user = 'test';
-  $password = '1234';
-  $conn = new PDO($host, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
   /* Data 수정을 위한 Query 작성 */
   $stmt = $conn->prepare('UPDATE board SET title="'.$title.'", content="'.$content.'", author="'.$author.'" WHERE id='.$id);

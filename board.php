@@ -1,9 +1,5 @@
 <?php
-/* Database 연결 */
-  $host = 'mysql:host=localhost;dbname=test';
-  $user = 'test';
-  $password = '1234';
-  $conn = new PDO($host, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+  include './database.php';
 
   // 공지사항 게시물 리스트
   $stmt = $conn->prepare('SELECT * FROM board WHERE notice=1 ORDER BY id DESC');
