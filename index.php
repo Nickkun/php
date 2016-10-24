@@ -97,21 +97,21 @@
             <div class="panel-body">
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-4 control-label">ID</label>
+                  <label for="loginid" class="col-sm-4 control-label">ID</label>
                   <div class="col-sm-8">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    <input type="text" class="form-control" id="loginid" name="loginid" placeholder="Login ID">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
+                  <label for="loginpw" class="col-sm-4 control-label">Password</label>
                   <div class="col-sm-8">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    <input type="password" class="form-control" id="loginpw" name="loginpw" placeholder="Login Password">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-offset-4 col-sm-8">
-                    <button type="submit" class="btn btn-default">Sign In</button>
-                    <a href="./signup.php" class="btn btn-info">Sign Up</a>
+                    <a href="#" id="submit" class="btn btn-success">로그인</a>
+                    <a href="./signup.php" class="btn btn-danger">회원가입</a>
                   </div>
                 </div>
               </form>
@@ -162,5 +162,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/login.js">
+
+    </script>
   </body>
 </html>
