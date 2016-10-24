@@ -92,6 +92,38 @@
           </div>
         </div>
         <div class="col-sm-4">
+          <div class="panel panel-danger">
+            <div class="panel-heading">로그인</div>
+            <div class="panel-body">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-4 control-label">ID</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-default">Sign In</button>
+                    <a href="./signup.php" class="btn btn-info">Sign Up</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <img src="./img/banner.jpg" class="banner" alt="banner" />
+        </div>
+      </div>
+    </section>
+    <section class="container no_first">
+      <div class="row">
+        <div class="col-sm-6">
           <div class="panel panel-info">
             <div class="panel-heading">공지사항</div>
             <ul class="list-group">
@@ -99,7 +131,8 @@
               <li class="list-group-item">게시판 운영규칙 입니다</li>
             </ul>
           </div>
-
+        </div>
+        <div class="col-sm-6">
           <div class="panel panel-warning">
             <div class="panel-heading">자주 묻는 질문</div>
             <div class="panel-body">

@@ -6,6 +6,11 @@ img {
   width: 100%;
 }
 
+.banner {
+  border: 2px solid #e272a9;
+  border-radius: 10px;
+}
+
 .no_first {
   margin-top: 40px;
 }
