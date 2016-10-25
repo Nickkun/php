@@ -92,10 +92,11 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="panel panel-danger">
+          <div id="log_info" class="panel panel-danger">
             <div class="panel-heading">로그인</div>
             <div class="panel-body">
-              <form class="form-horizontal">
+              <p class="text-danger error_msg hide">일치하는 회원정보가 없습니다</p>
+              <form id="login_panel" class="form-horizontal">
                 <div class="form-group">
                   <label for="loginid" class="col-sm-4 control-label">ID</label>
                   <div class="col-sm-8">
@@ -115,6 +116,12 @@
                   </div>
                 </div>
               </form>
+              <div id="user_info" class="hide">
+                <p>ID : <span id="user_id"></span></p>
+                <p>권한 : <span id="user_role"></span></p>
+                <p>등록일 : <span id="user_timestamp"></span></p>
+                <a href="./logout.php" class="btn btn-danger">로그아웃</a>
+              </div>
             </div>
           </div>
           <img src="./img/banner.jpg" class="banner" alt="banner" />

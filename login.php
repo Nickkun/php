@@ -10,11 +10,11 @@
   $stmt->execute();
   $user = $stmt->fetchAll();
 
-  // if (count($user) > 0) {
-  //   $result = $user[0];
-  // } else {
-  //   $result = array();
-  // }
+  if (count($user) > 0) {
+    $result = $user[0];
+  } else {
+    $result = array();
+  }
 
-  echo json_encode($user[0]);
+  echo json_encode($result);
 ?>
