@@ -1,5 +1,8 @@
 <?php
   include './database.php';
+  // 페이지네이션 변수
+  $limit = 5;
+  $offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
 
   // 공지사항 게시물 리스트
   $stmt = $conn->prepare('SELECT * FROM board WHERE notice=1 ORDER BY id DESC');
@@ -7,9 +10,23 @@
   $notice_list = $stmt->fetchAll();
 
   // 일반 게시물 리스트
-  $stmt = $conn->prepare('SELECT * FROM board WHERE notice=0 ORDER BY id DESC');
+  $stmt = $conn->prepare('SELECT * FROM board WHERE notice=0 ORDER BY id DESC LIMIT '.$offset.','.$limit);
   $stmt->execute();
   $list = $stmt->fetchAll();
+
+  // 일반 게시물의 총 개수
+  $stmt = $conn->prepare('SELECT * FROM board WHERE notice=0');
+  $stmt->execute();
+  $list_count = $stmt->fetchAll();
+
+  $total_count = count($list_count);
+  $total_page_count = ceil($total_count / $limit);
+  // $page = $offset; 
+
+  echo "limit : ".$limit;
+  echo "offset : ".$offset;
+  echo "total_count : ".$total_count;
+  echo "total_page_count : ".$total_page_count;
 
   // 현재시간
   $now = date('Y-m-d H:i:s', time() + 32400);
@@ -125,17 +142,15 @@
                 <ul class="pagination">
                   <li>
                     <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
+                      <span aria-hidden="true">&laquo; prev</span>
                     </a>
                   </li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
+                  <?php for($i = 1; $i <= $total_page_count; $i++) :?>
+                  <li><a href="./board.php?offset=<?php echo $limit*($i-1)?>"><?php echo $offset + $i ?></a></li>
+                  <?php endfor; ?>
                   <li>
                     <a href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
+                      <span aria-hidden="true">&raquo; next</span>
                     </a>
                   </li>
                 </ul>

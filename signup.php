@@ -1,7 +1,3 @@
-<?php
-  session_start();
-  $is_logged = $_SESSION['is_logged'];
-?>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -40,75 +36,55 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
+            <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
             <li><a href="./introduce.php"><i class="fa fa-user-secret" aria-hidden="true"></i> Introduce</a></li>
-            <li class="active"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Board  <span class="sr-only">(current)</span></a></li>
+            <li><a href="./board.php"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Board</a></li>
             <li><a href="./faq.php"><i class="fa fa-comments" aria-hidden="true"></i> FAQ</a></li>
-          </ul>
-          <?php if ($is_logged) : ?>
-          <ul class="nav navbar-nav navbar-right">
-            <?php if ($_SESSION['role'] == 0) : ?>
-            <li>
-              <a href="#">
-                <span class="label label-danger">관리자 </span>
-                <?php echo $_SESSION['user_id'] ?>
-              </a>
-            </li>
-            <?php else : ?>
-            <li>
-              <a href="#">
-                <span class="label label-info">일반 </span>
-                <?php echo $_SESSION['user_id'] ?>
-              </a>
-            </li>
-            <?php endif; ?>
-          </ul>
-          <?php endif; ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <section class="container">
-      <form class="form-horizontal" action="./insert_board.php" method="get">
-        <div class="form-group">
-          <label for="title" class="col-sm-2 control-label">제목</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="content" class="col-sm-2 control-label">내용</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="author" class="col-sm-2 control-label">작성자</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="author" name="author" placeholder="작성자를 입력하세요">
-          </div>
-        </div>
-        <?php if ($is_logged && $_SESSION['role'] == 0) : ?>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" id="notice" name="notice"> 공지사항
-              </label>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <h3>회원가입 <small>사용자 정보를 입력하세요</small></h3>
+          <hr>
+          <form id="signup" class="form-horizontal" action="./add_user.php" method="POST">
+            <div class="form-group">
+              <label for="id" class="col-sm-4 control-label">ID</label>
+              <div class="col-sm-8">
+                <input type="email" class="form-control" id="id" name="id" placeholder="Email">
+              </div>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="password" class="col-sm-4 control-label">Password</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password_check" class="col-sm-4 control-label">Password Check</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" id="password_check" name="passowrd_check" placeholder="Password">
+                <p id="check_msg" class="help-block"></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-4 col-sm-8">
+                <a href="#" id="submit" class="btn btn-danger disabled">Sign Up</a>
+              </div>
+            </div>
+          </form>
         </div>
-        <?php endif; ?>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">등록</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </section>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/signup.js">
+
+    </script>
   </body>
 </html>
