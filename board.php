@@ -2,7 +2,7 @@
   include './database.php';
   include './session.php';
   // 페이지네이션 변수
-  $limit = 5;
+  $limit = 20;
   $offset = (isset($_GET['offset'])) ? $_GET['offset'] : 0;
 
   // 공지사항 게시물 리스트
@@ -42,8 +42,9 @@
       <tr>
         <th width="10%">No.</th>
         <th width="50%">제목</th>
-        <th width="20%">작성자</th>
-        <th width="20%">작성일</th>
+        <th width="15%">작성자</th>
+        <th width="10%">접속IP</th>
+        <th width="15%">작성일</th>
       </tr>
     </thead>
     <tbody>
@@ -65,6 +66,7 @@
           <?php endif; ?>
         </td>
         <td><?php echo $item['author'] ?></td>
+        <td><?php echo $item['ipaddress'] ?></td>
         <td><?php echo $item['timestamp'] ?></td>
       </tr>
       <?php endforeach; ?>
@@ -103,6 +105,7 @@
             ?>
             <?php echo $item['author'] ?>
           </td>
+          <td><?php echo $item['ipaddress'] ?></td>
           <td><?php echo $item['timestamp'] ?></td>
         </tr>
         <?php endforeach; ?>

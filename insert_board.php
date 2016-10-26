@@ -7,8 +7,11 @@
   $content = $_GET['content'];
   $author = $_GET['author'];
   $notice = (isset($_GET['notice'])) ? $_GET['notice'] : '' ;
+  $ipaddress = $_SERVER['REMOTE_ADDR'];
   // (조건식) ? TRUE : FALSE;
-  //
+
+
+
   if ($notice == 'on') {
     $notice = 1;
   } else {
@@ -17,8 +20,17 @@
 
   /* Data 삽입을 위한 Query 작성 */
   $stmt = $conn->prepare(
-  'INSERT INTO board (user_id, title, content, author, notice)
-   VALUES ("'.$user_id.'", "'.$title.'", "'.$content.'", "'.$author.'", "'.$notice.'")');
+  'INSERT INTO board (user_id, title, content, author, notice, ipaddress)
+   VALUES ("'.$user_id.'", "'.$title.'", "'.$content.'", "'.$author.'", "'.$notice.'", "'.$ipaddress.'")');
+  /* Query 실행 */
+  $stmt->execute();
+
+  /* User Data 수정을 위한 Query 작성 */
+  $stmt = $conn->prepare('SELECT * FROM user WHERE id="'.$user_id.'"');
+  $stmt->execute();
+  $user_info = $stmt->fetchAll();
+
+  $stmt = $conn->prepare('UPDATE user SET point="'.($user_info[0]['point'] + 10).'" WHERE id="'.$user_id.'"');
   /* Query 실행 */
   $stmt->execute();
 

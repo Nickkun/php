@@ -96,7 +96,7 @@
       </div>
     </div>
     <input type="hidden" name="board_id" value="<?php echo $item[0]['id']?>">
-    <input type="hidden" name="id" value="<?php echo $_SESSION['id']?>">
+    <input type="hidden" name="user_id" value="<?php echo $_SESSION['id']?>">
   </form>
 </section>
 <?php endif; ?>
@@ -107,7 +107,8 @@
       <tr>
         <td width="5%"></td>
         <td width="10%">작성자</td>
-        <td width="65%">내용</td>
+        <td width="10%">접속IP</td>
+        <td width="55%">내용</td>
         <td width="20%" class="text-right">작성일</td>
       </tr>
     </thead>
@@ -117,6 +118,7 @@
         <tr>
           <td><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i></td>
           <td><?php echo $reply_item['author']?></td>
+          <td><?php echo $reply_item['ipaddress']?></td>
           <td>
             <?php echo $reply_item['content']?>
             <?php if ((strtotime($now) - strtotime($reply_item['timestamp'])) < 86400) : ?>
@@ -128,7 +130,7 @@
         <?php } ?>
       <?php } else { ?>
         <tr>
-          <td colspan="4" class="text-center">등록된 댓글이 없습니다</td>
+          <td colspan="5" class="text-center">등록된 댓글이 없습니다</td>
         </tr>
       <?php } ?>
     </tbody>

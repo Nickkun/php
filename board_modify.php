@@ -45,7 +45,8 @@
         <a href="./board.php" class="btn btn-success pull-right"><i class="fa fa-list" aria-hidden="true"></i> 목록</a>
       </div>
     </div>
-    <input type="hidden" name="id" value="<?php echo $item[0]['id']?>">
+    <input type="hidden" name="board_id" value="<?php echo $item[0]['id']?>">
+    <input type="hidden" name="user_id" value="<?php echo $_SESSION['id']?>">
   </form>
 </section>
 

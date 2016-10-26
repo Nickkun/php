@@ -15,6 +15,7 @@
   if (count($user) > 0) {
     $result = $user[0];
     $_SESSION['is_logged'] = true;
+    
     $_SESSION['id'] = $user[0]['id'];
     $_SESSION['user_id'] = $user[0]['user_id'];
     $_SESSION['user_name'] = $user[0]['user_name'];
