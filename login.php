@@ -1,5 +1,6 @@
 <?php
   include './database.php';
+  session_cache_expire(60);
   session_start();
 
   $id = $_POST['loginid'];
@@ -14,7 +15,10 @@
   if (count($user) > 0) {
     $result = $user[0];
     $_SESSION['is_logged'] = true;
+    $_SESSION['id'] = $user[0]['id'];
     $_SESSION['user_id'] = $user[0]['user_id'];
+    $_SESSION['user_name'] = $user[0]['user_name'];
+    $_SESSION['point'] = $user[0]['point'];
     $_SESSION['role'] = $user[0]['role'];
     $_SESSION['timestamp'] = $user[0]['timestamp'];
   } else {

@@ -59,3 +59,11 @@ tfoot tr td {
 .notice_bg a {
   color: #FFFFFF;
 }
+
+.navbar-nav .label {
+  margin-right: 5px;
+}
+
+.navbar-right li:first-child a {
+  font-weight: bold;
+}
